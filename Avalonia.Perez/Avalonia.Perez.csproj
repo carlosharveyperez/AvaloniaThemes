@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Behaviors\" />
+  </ItemGroup>
+
+  <ItemGroup>
+	<PackageReference Include="Avalonia" Version="11.0.0-preview5" />
+	<PackageReference Include="Avalonia.Desktop" Version="11.0.0-preview5" />
+	<PackageReference Include="Avalonia.Themes.Fluent" Version="11.0.0-preview5" />
+	<PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="11.0.0-preview5" />
+	<PackageReference Include="Avalonia.ReactiveUI" Version="11.0.0-preview5" />
+  </ItemGroup>
+
+</Project>
