@@ -2,7 +2,7 @@
 using System.Drawing;
 using System.Text.Json;
 
-namespace Avalonia.Perez.Behaviors;
+namespace Avalonia.StormyPixel.Behaviors;
 
 /// <summary>
 /// This behavior saves the Left, Top, Width and Height properties of a Window and restore
@@ -43,8 +43,9 @@ public class SaveWindowLocationBehavior
     private static void Window_Closing(object? sender, WindowClosingEventArgs e)
     {
         if (sender == null) return;
-
         Window w = (Window)sender;
+        if (!IsSavingSupported(w)) return;
+
         var fileName = GetFileName(w);
         var fileInfo = new FileInfo(fileName);
         if (fileInfo.Exists) File.Delete(fileName);
@@ -59,6 +60,8 @@ public class SaveWindowLocationBehavior
     // the jarring effect of moving the window after it was displayed.
     private static void ApplyWindowLocation(Window w)
     {
+        if (!IsSavingSupported(w)) return;
+
         var fileName = GetFileName(w);
         var fileInfo = new FileInfo(fileName);
         if (!fileInfo.Exists) return;
@@ -69,6 +72,8 @@ public class SaveWindowLocationBehavior
         w.Width = bounds.Width;
         w.Height = bounds.Height;
     }
+
+    private static bool IsSavingSupported(Window w) => w is { WindowStartupLocation: WindowStartupLocation.Manual, WindowState: WindowState.Normal };
 
     private static string GetFileName(Window w)
     {

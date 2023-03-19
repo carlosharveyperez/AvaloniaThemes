@@ -25,6 +25,6 @@
 
 
   <ItemGroup>
-    <ProjectReference Include="..\Avalonia.Perez\Avalonia.Perez.csproj" />
+    <ProjectReference Include="..\Avalonia.StormyPixel\Avalonia.StormyPixel.csproj" />
   </ItemGroup>
 </Project>
