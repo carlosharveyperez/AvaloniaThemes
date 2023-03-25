@@ -1,4 +1,5 @@
 ﻿using Avalonia.Controls;
+using Avalonia.Xaml.Interactivity;
 using System.Drawing;
 using System.Text.Json;
 
@@ -10,37 +11,26 @@ namespace Avalonia.StormyPixel.Behaviors;
 /// There is currently no support for multiple monitors or reposition a window
 /// that is out of bounds of the physical screens.
 /// </summary>
-public class SaveWindowLocationBehavior
+public class SaveWindowLocationBehavior : Behavior<Window>
 {
-    public static bool GetIsSet(Window window) => window.GetValue(IsSetProperty);
-
-    public static void SetIsSet(Window window, bool value) => window.SetValue(IsSetProperty, value);
-
-    public static readonly AttachedProperty<bool> IsSetProperty =
-        AvaloniaProperty.RegisterAttached<SaveWindowLocationBehavior, Window, bool>("IsSet");
-
-    static SaveWindowLocationBehavior()
+    protected override void OnAttached()
     {
-        IsSetProperty.Changed.Subscribe(OnIsSetChanged);
-    }
-
-    private static void OnIsSetChanged(AvaloniaPropertyChangedEventArgs<bool> args)
-    {
-        Window w = (Window)args.Sender;
-        bool value = args.NewValue.Value;
-
-        if (value)
+        if (AssociatedObject is { })
         {
-            ApplyWindowLocation(w);
-            w.Closing += Window_Closing;
-        }
-        else
-        {
-            w.Closing -= Window_Closing;
+            AssociatedObject.Closing += Window_Closing;
+            ApplyWindowLocation(AssociatedObject);
         }
     }
 
-    private static void Window_Closing(object? sender, WindowClosingEventArgs e)
+    protected override void OnDetaching()
+    {
+        if (AssociatedObject is { })
+        {
+            AssociatedObject.Closing -= Window_Closing;
+        }
+    }
+
+    private void Window_Closing(object? sender, WindowClosingEventArgs e)
     {
         if (sender == null) return;
         Window w = (Window)sender;
@@ -56,9 +46,7 @@ public class SaveWindowLocationBehavior
         File.WriteAllText(fileName, jsonString);
     }
 
-    // We apply the saved settings before the window is displayed to avoid 
-    // the jarring effect of moving the window after it was displayed.
-    private static void ApplyWindowLocation(Window w)
+    private void ApplyWindowLocation(Window w)
     {
         if (!IsSavingSupported(w)) return;
 
@@ -73,9 +61,12 @@ public class SaveWindowLocationBehavior
         w.Height = bounds.Height;
     }
 
-    private static bool IsSavingSupported(Window w) => w is { WindowStartupLocation: WindowStartupLocation.Manual, WindowState: WindowState.Normal };
+    private bool IsSavingSupported(Window w)
+    {
+        return w is { WindowStartupLocation: WindowStartupLocation.Manual, WindowState: WindowState.Normal };
+    }
 
-    private static string GetFileName(Window w)
+    private string GetFileName(Window w)
     {
         var windowName = !string.IsNullOrEmpty(w.Name) ? w.Name : w.GetType().FullName;
         var fileName = $"{windowName}.json";
