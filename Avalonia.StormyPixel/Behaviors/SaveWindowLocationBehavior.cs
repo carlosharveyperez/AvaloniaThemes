@@ -37,8 +37,8 @@ public class SaveWindowLocationBehavior : Behavior<Window>
         if (!IsSavingSupported(w)) return;
 
         var fileName = GetFileName(w);
-        var fileInfo = new FileInfo(fileName);
-        if (fileInfo.Exists) File.Delete(fileName);
+        if (IsValidFileAssociated(w))
+            File.Delete(fileName);
 
         var screenPos = w.PointToScreen(w.Bounds.TopLeft);
         var bounds = new Rectangle(screenPos.X, screenPos.Y, (int)w.Width, (int)w.Height);
@@ -49,16 +49,21 @@ public class SaveWindowLocationBehavior : Behavior<Window>
     private void ApplyWindowLocation(Window w)
     {
         if (!IsSavingSupported(w)) return;
+        if (!IsValidFileAssociated(w)) return;
 
         var fileName = GetFileName(w);
-        var fileInfo = new FileInfo(fileName);
-        if (!fileInfo.Exists) return;
-
         string jsonString = File.ReadAllText(fileName);
         var bounds = JsonSerializer.Deserialize<Rectangle>(jsonString);
         w.Position = PixelPoint.FromPoint(new Point(bounds.Left, bounds.Top), 1);
         w.Width = bounds.Width;
         w.Height = bounds.Height;
+    }
+
+    private bool IsValidFileAssociated(Window w)
+    {
+        var fileName = GetFileName(w);
+        var fileInfo = new FileInfo(fileName);
+        return fileInfo.Exists;
     }
 
     private bool IsSavingSupported(Window w)
