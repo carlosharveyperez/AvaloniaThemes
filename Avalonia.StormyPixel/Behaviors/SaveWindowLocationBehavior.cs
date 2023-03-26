@@ -8,7 +8,7 @@ namespace Avalonia.StormyPixel.Behaviors;
 /// <summary>
 /// This behavior saves the Left, Top, Width and Height properties of a Window and restore
 /// these properties before the window is displayed.
-/// There is currently no support for multiple monitors or reposition a window
+/// There is currently no support for multiple monitors or repositioning a window
 /// that is out of bounds of the physical screens.
 /// </summary>
 public class SaveWindowLocationBehavior : Behavior<Window>
