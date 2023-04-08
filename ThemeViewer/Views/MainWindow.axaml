@@ -5,22 +5,43 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:i="clr-namespace:Avalonia.Xaml.Interactivity;assembly=Avalonia.Xaml.Interactivity"
         xmlns:behaviors="clr-namespace:Avalonia.StormyPixel.Behaviors;assembly=Avalonia.StormyPixel"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        xmlns:views="clr-namespace:ThemeViewer.Views"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="600"
         x:Class="ThemeViewer.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
         Icon="/Assets/avalonia-logo.ico"
-        Title="ThemeViewer">
-
-    <Design.DataContext>
-        <!-- This only sets the DataContext for the previewer in an IDE,
-             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
-        <vm:MainWindowViewModel/>
-    </Design.DataContext>
+        Title="Theme Viewer">
 
     <i:Interaction.Behaviors>
         <behaviors:SaveWindowLocationBehavior/> 
     </i:Interaction.Behaviors>
 
-    <TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+	<Panel>
+		<DockPanel HorizontalAlignment="Stretch">
+            <ExperimentalAcrylicBorder DockPanel.Dock="Left" Width="240">
+                <ExperimentalAcrylicBorder.Material>
+                    <ExperimentalAcrylicMaterial TintColor="Black" MaterialOpacity="0.85" TintOpacity="1" />
+                </ExperimentalAcrylicBorder.Material>
+                <AutoCompleteBox HorizontalAlignment="Stretch" Margin="20 40 20 0" 
+                                 Watermark="Search" Items="{Binding SearchItems}" />
+            </ExperimentalAcrylicBorder>
+            <ExperimentalAcrylicBorder IsHitTestVisible="False">
+                <ExperimentalAcrylicBorder.Material>
+                    <ExperimentalAcrylicMaterial TintColor="#222222" MaterialOpacity="0.85" TintOpacity="1" />
+                </ExperimentalAcrylicBorder.Material>
+                <TextBlock Text="{Binding #TabControl.SelectedItem.Header, FallbackValue=Header}" 
+                           Margin="40 20" FontSize="28" FontWeight="Light" />
+            </ExperimentalAcrylicBorder>
+        </DockPanel> 
 
+        <TabControl x:Name="TabControl" Classes="sidebar" Margin="0 40 0 10">
+            <TabItem Header="Overview">
+               <views:OverviewView/>
+            </TabItem>
+
+            <TabItem Header="Button">
+             
+            </TabItem>
+        </TabControl>
+    </Panel>
 </Window>
