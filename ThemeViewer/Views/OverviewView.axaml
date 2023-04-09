@@ -2,134 +2,165 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d" d:DesignWidth="1100" d:DesignHeight="700"
+             mc:Ignorable="d" d:DesignWidth="1120" d:DesignHeight="700"
              x:Class="ThemeViewer.Views.OverviewView">
+    <UserControl.Resources>
+        <MenuFlyout x:Key="SharedMenuFlyout"
+                    Placement="Bottom">
+            <MenuItem Header="Item 1">
+                <MenuItem Header="Subitem 1" />
+                <MenuItem Header="Subitem 2" />
+                <MenuItem Header="Subitem 3" />
+            </MenuItem>
+            <MenuItem Header="Item 2" InputGesture="Ctrl+A" />
+            <MenuItem Header="Item 3" />
+        </MenuFlyout>
+    </UserControl.Resources>
 
-    <StackPanel Margin="40 0 40 0" Background="Transparent"
-                Orientation="Horizontal" Spacing="40">
-    <StackPanel.Styles>
-      <Style Selector="TextBlock.header">
-        <Setter Property="Margin" Value="0 30 0 20" />
-      </Style>
+    <StackPanel Margin="40 0 40 0" Background="Transparent" Orientation="Horizontal" Spacing="40">
+        <StackPanel.Styles>
+          <Style Selector="TextBlock.header">
+            <Setter Property="Margin" Value="0 30 0 20" />
+          </Style>
+        </StackPanel.Styles>
 
-		<Style Selector="Button, ToggleButton">
-            <Setter Property="Width" Value="120"/>
-            <Setter Property="HorizontalContentAlignment" Value="Center"/>
-        </Style>
+         <StackPanel>
+            <StackPanel.Styles>
+			  <Style Selector="ToggleButton, DropDownButton">
+                  <Setter Property="Width" Value="130"/>
+                  <Setter Property="HorizontalContentAlignment" Value="Center"/>
+              </Style>
+            </StackPanel.Styles>
 
-    </StackPanel.Styles>
+          <TextBlock Classes="header" Margin="0 0 0 20" Text="Buttons" />
+          <Button Content="Enabled button" Width="130" HorizontalContentAlignment="Center" />
+          <Button Content="Disabled button" IsEnabled="False" Margin="0,15,0,0"  Width="130" HorizontalContentAlignment="Center"/>
+          <ToggleButton Content="Toggle button" IsChecked="True" Margin="0,15,0,0" />
+          <DropDownButton Content="Dropdown" Flyout="{StaticResource SharedMenuFlyout}" Margin="0,15,0,0"/>
+          <SplitButton Content="Split button" Width="130" HorizontalContentAlignment="Center"
+                       Flyout="{StaticResource SharedMenuFlyout}" Margin="0,15,0,0"/>
+          
+          <TextBlock Text="Checkbox" Classes="header" />
+          <CheckBox Content="Unchecked" />
+          <CheckBox Content="Checked" IsChecked="True" Margin="0,8,0,0" />
+          <CheckBox Content="Third state" IsChecked="{x:Null}" IsThreeState="True" Margin="0,8,0,0" />
+          <CheckBox Content="Disabled" IsChecked="True" IsEnabled="False" Margin="0,8,0,0" />
 
-    <StackPanel>
-      <TextBlock Classes="header" Margin="0 0 0 20" Text="Buttons" />
-      <Button Content="Enabled button" />
-      <Button Content="Disabled button" IsEnabled="False" Margin="0,15,0,0" />
-      <ToggleButton Content="Toggle button" IsChecked="True" Margin="0,15,0,0" />
-      
-      <TextBlock Text="Checkbox" Classes="header" />
-      <CheckBox Content="Unchecked" />
-      <CheckBox Content="Checked" IsChecked="True" Margin="0,8,0,0" />
-      <CheckBox Content="Third state" IsChecked="{x:Null}" IsThreeState="True" Margin="0,8,0,0" />
-      <CheckBox Content="Disabled" IsChecked="True" IsEnabled="False" Margin="0,8,0,0" />
+          <TextBlock Text="Radio button" Classes="header"/>
+          <RadioButton Content="Unchecked" />
+          <RadioButton Content="Checked" IsChecked="True" Margin="0,8,0,0" />
+          <RadioButton Content="Disabled" GroupName="Disabled" IsChecked="True" IsEnabled="False" Margin="0,8,0,0" />
+        </StackPanel>
 
-      <TextBlock Text="Radio button" Classes="header"/>
-      <RadioButton Content="Unchecked" />
-      <RadioButton Content="Checked" IsChecked="True" Margin="0,8,0,0" />
-      <RadioButton Content="Disabled" GroupName="Disabled" IsChecked="True" IsEnabled="False" Margin="0,8,0,0" />
+        <StackPanel Width="296">
+          <TextBlock Text="Date picker" Classes="header" Margin="0 0 0 20" />
+          <DatePicker/>
+          <DatePicker IsEnabled="False" Margin="0,15,0,0"/>
+
+          <TextBlock Text="Time picker" Classes="header" />
+          <TimePicker/>
+          <TimePicker IsEnabled="False" Margin="0,15,0,0"/>
+
+          <TextBlock Text="Calendar" Classes="header" />
+          <Calendar/>
+        </StackPanel>
+
+        <StackPanel Width="241">
+          <TextBlock Text="Combo box" Margin="0 0 0 20" Classes="header" />
+          <ComboBox HorizontalAlignment="Stretch" SelectedIndex="0">
+            <ComboBoxItem>List item</ComboBoxItem>
+            <ComboBoxItem>List item</ComboBoxItem>
+            <ComboBoxItem>List item</ComboBoxItem>
+            <ComboBoxItem>List item</ComboBoxItem>
+          </ComboBox>
+          <ComboBox HorizontalAlignment="Stretch" SelectedIndex="0" IsEnabled="False" Margin="0,17,0,0" >
+              <ComboBoxItem>List item</ComboBoxItem>
+          </ComboBox>
+
+          <TextBlock Text="List box" Classes="header" />
+          <Grid>
+            <ListBox SelectedIndex="0" Margin="0,6">
+              <ListBoxItem Content="Linux" />
+              <ListBoxItem Content="Mac" />
+              <ListBoxItem Content="Windows" />
+            </ListBox>
+            <Border
+                BorderBrush="{DynamicResource SystemControlForegroundChromeHighBrush}"
+                BorderThickness="1"
+                CornerRadius="{DynamicResource ControlCornerRadius}"
+                IsHitTestVisible="False" />
+          </Grid>
+
+		  <TextBlock Text="Expander" Classes="header" />
+		  <Expander Header="Expand Up" ExpandDirection="Up" CornerRadius="{Binding CornerRadius}"/>
+          <Expander Header="Expand Down" ExpandDirection="Down" CornerRadius="{Binding CornerRadius}" Margin="0,15,0,0"/>
+
+          <TextBlock Text="Menu" Classes="header" />
+          <Menu>
+              <MenuItem Header="_File">
+                  <MenuItem Header="_New" CommandParameter="{Binding}" InputGesture="Ctrl+N"/>
+                  <Separator/>
+                  <MenuItem Header="_Open..." InputGesture="Ctrl+O"/>
+                  <Separator/>
+                  <MenuItem Header="Execu_te Script..." />
+                  <Separator/>
+                  <MenuItem Header="_Recent">
+                      <MenuItem Header="Recent 1" />
+                      <MenuItem Header="Recent 2" />
+                      <MenuItem Header="Recent 3" />
+                  </MenuItem>
+                  <Separator/>
+                  <MenuItem Header="E_xit" InputGesture="Alt+F4"/>
+              </MenuItem>
+			  <MenuItem Header="Edit">
+                  <MenuItem Header="Copy" InputGesture="Ctrl+C"/>
+                  <MenuItem Header="Cut" InputGesture="Ctrl+X"/>
+                  <MenuItem Header="Paste" InputGesture="Ctrl+V"/>
+              </MenuItem>  
+              <MenuItem Header="_Help">
+                  <MenuItem Header="_About"/>
+              </MenuItem>
+          </Menu>
+
+		</StackPanel>
+
+        <StackPanel Width="265">
+          <TextBlock Text="TextBox" Margin="0 0 0 20" Classes="header" />
+          <TextBox Watermark="Placeholder text"   />
+          <TextBox 
+              Watermark="Placeholder text"
+              IsEnabled="False"
+              Margin="0,17,0,0" />
+          <TextBox
+              Watermark="Placeholder text"
+              PasswordChar="*"
+              Margin="0,17,0,0" />
+
+          <TextBlock Text="Numeric up down" Classes="header" />
+          <NumericUpDown FormatString="C2" Increment="0.25" Value="10.0"/>
+
+          <TextBlock Text="Toggle switch" Classes="header" />
+          <Grid>
+            <Grid.RowDefinitions>
+              <RowDefinition Height="Auto" />
+              <RowDefinition Height="12" />
+              <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition />
+              <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <ToggleSwitch Grid.Row="0" Grid.Column="0" />
+            <ToggleSwitch Grid.Row="2" Grid.Column="0" IsChecked="True" />
+            <ToggleSwitch Grid.Row="0" Grid.Column="1" OffContent="Disabled Off" IsEnabled="False" />
+            <ToggleSwitch Grid.Row="2" Grid.Column="1" OnContent="Disabled On" IsChecked="True" IsEnabled="False" />
+          </Grid>
+
+          <TextBlock Text="Slider" Classes="header" />
+          <Slider x:Name="Slider" Margin="0" Value="50" Maximum="100" />
+          <TextBlock Text="Progress bar" Classes="header" />
+          <ProgressBar Value="{Binding #Slider.Value}" />
+          <ProgressBar IsIndeterminate="True" Margin="0 40" />
+        </StackPanel>
     </StackPanel>
-
-    <StackPanel Width="296">
-      <TextBlock Text="Date picker" Classes="header" Margin="0 0 0 20" />
-      <DatePicker/>
-
-      <TextBlock Text="Time picker" Classes="header" />
-      <TimePicker/>
-
-      <TextBlock Text="Calendar" Classes="header" />
-      <Calendar/>
-    </StackPanel>
-
-    <StackPanel Width="241">
-      <TextBlock Text="Combo box" Margin="0 0 0 20" Classes="header" />
-      <ComboBox HorizontalAlignment="Stretch" SelectedIndex="0">
-        <ComboBoxItem>List item</ComboBoxItem>
-        <ComboBoxItem>List item</ComboBoxItem>
-        <ComboBoxItem>List item</ComboBoxItem>
-        <ComboBoxItem>List item</ComboBoxItem>
-      </ComboBox>
-      <ComboBox HorizontalAlignment="Stretch" SelectedIndex="0" IsEnabled="False" Margin="0,17,0,0" >
-          <ComboBoxItem>List item</ComboBoxItem>
-      </ComboBox>
-
-      <TextBlock Text="List box" Classes="header" />
-      <Grid>
-        <ListBox SelectedIndex="0" Margin="0,6">
-          <ListBoxItem Content="Linux" />
-          <ListBoxItem Content="Mac" />
-          <ListBoxItem Content="Windows" />
-        </ListBox>
-        <Border
-            BorderBrush="{DynamicResource SystemControlForegroundChromeHighBrush}"
-            BorderThickness="1"
-            CornerRadius="{DynamicResource ControlCornerRadius}"
-            IsHitTestVisible="False" />
-      </Grid>
-
-      <Grid Width="148" HorizontalAlignment="Left" Margin="0,31,0,0">
-        <ListBox SelectedIndex="0" Margin="0,6">
-          <ListBox.Styles>
-            <Style Selector="ListBoxItem">
-              <Setter Property="Padding" Value="12,5,12,8" />
-            </Style>
-          </ListBox.Styles>
-          <ListBoxItem Content="Linux" />
-          <ListBoxItem Content="Mac" />
-          <ListBoxItem Content="Windows" />
-        </ListBox>
-        <Border
-            BorderBrush="{DynamicResource SystemControlForegroundChromeHighBrush}"
-            BorderThickness="1"
-            CornerRadius="{DynamicResource ControlCornerRadius}"
-            IsHitTestVisible="False" />
-      </Grid>
-    </StackPanel>
-
-    <StackPanel Width="265">
-      <TextBlock Text="TextBox" Margin="0 0 0 20" Classes="header" />
-      <TextBox Watermark="Placeholder text"   />
-      <TextBox 
-          Watermark="Placeholder text"
-          IsEnabled="False"
-          Margin="0,17,0,0" />
-      <TextBox
-          Watermark="Placeholder text"
-          PasswordChar="*"
-          Margin="0,17,0,0" />
-
-      <TextBlock Text="Numeric up down" Classes="header" />
-      <NumericUpDown FormatString="C2" Increment="0.25" />
-
-      <TextBlock Text="Toggle switch" Classes="header" />
-      <Grid>
-        <Grid.RowDefinitions>
-          <RowDefinition Height="Auto" />
-          <RowDefinition Height="12" />
-          <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-          <ColumnDefinition />
-          <ColumnDefinition Width="Auto" />
-        </Grid.ColumnDefinitions>
-        <ToggleSwitch Grid.Row="0" Grid.Column="0" />
-        <ToggleSwitch Grid.Row="2" Grid.Column="0" IsChecked="True" />
-        <ToggleSwitch Grid.Row="0" Grid.Column="1" OffContent="Disabled Off" IsEnabled="False" />
-        <ToggleSwitch Grid.Row="2" Grid.Column="1" OnContent="Disabled On" IsChecked="True" IsEnabled="False" />
-      </Grid>
-
-      <TextBlock Text="Slider" Classes="header" />
-      <Slider x:Name="Slider" Margin="0" Value="50" Maximum="100" />
-      <TextBlock Text="Progress bar" Classes="header" />
-      <ProgressBar Value="{Binding #Slider.Value}" />
-      <ProgressBar IsIndeterminate="True" Margin="0 40" />
-    </StackPanel>
-  </StackPanel>
 </UserControl>

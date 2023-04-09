@@ -27,7 +27,7 @@
                     <ExperimentalAcrylicMaterial TintColor="{DynamicResource SystemAltHighColor}" MaterialOpacity="0.85" TintOpacity="1" />
                 </ExperimentalAcrylicBorder.Material>
                 <StackPanel>
-                    <TextBlock Text="Select Theme" Margin="20, 40, 20, 5"/>
+                    <TextBlock Text="Theme" Margin="20, 30, 20, 5"/>
                     <ComboBox HorizontalAlignment="Stretch" Margin="20 0 20 0"
                               Items="{Binding Themes}" SelectedItem="{Binding SelectedTheme}"/>
                 </StackPanel>
