@@ -77,8 +77,8 @@
   </Style>
 
   <Style Selector="TabControl.sidebar > TabItem:selected">
-	  <Setter Property="Background" Value="{DynamicResource SystemControlHighlightListAccentLowBrush}" />
-      <Setter Property="Foreground" Value="{DynamicResource SystemControlHighlightAltBaseHighBrush}" />
+	  <Setter Property="Background" Value="{DynamicResource SystemControlHighlightAccentBrush}" />
+      <Setter Property="Foreground" Value="{DynamicResource SystemControlHighlightAltChromeWhiteBrush}" />
   </Style>
 
   <Style Selector="TabControl.sidebar > TabItem:pointerover /template/ Border#PART_LayoutRoot">
@@ -88,6 +88,7 @@
   <Style Selector="TabControl.sidebar > TabItem:selected">
     <Style Selector="^:pointerover /template/ Border#PART_LayoutRoot">
 	    <Setter Property="Background" Value="{DynamicResource SystemControlHighlightListAccentMediumBrush}" />
+        <Setter Property="TextElement.Foreground" Value="{DynamicResource SystemControlHighlightAltChromeWhiteBrush}" />
     </Style>
   </Style>
 
