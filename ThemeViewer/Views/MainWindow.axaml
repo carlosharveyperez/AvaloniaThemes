@@ -5,12 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:i="clr-namespace:Avalonia.Xaml.Interactivity;assembly=Avalonia.Xaml.Interactivity"
         xmlns:behaviors="clr-namespace:Avalonia.StormyPixel.Behaviors;assembly=Avalonia.StormyPixel"
-        xmlns:views="clr-namespace:ThemeViewer.Views"
+        xmlns:converters="clr-namespace:Avalonia.StormyPixel.Converters;assembly=Avalonia.StormyPixel"
         mc:Ignorable="d" d:DesignWidth="1100" d:DesignHeight="800"
         x:Class="ThemeViewer.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
         Icon="/Assets/avalonia-logo.ico"
         Title="Theme Viewer">
+
+    <Window.Resources>
+        <converters:BitmapAssetValueConverter x:Key="BitmapAssetValueConverter"/>
+    </Window.Resources>
 
     <i:Interaction.Behaviors>
         <behaviors:SaveWindowLocationBehavior/> 
@@ -19,6 +23,15 @@
     <Window.DataContext>
         <vm:MainWindowViewModel/>
     </Window.DataContext>
+
+    <Window.Styles>
+        <Style Selector="Image">
+            <Setter Property="Width" Value="24"/>
+            <Setter Property="Height" Value="24"/>
+            <Setter Property="Margin" Value="4,4,10,4"/>
+            <Setter Property="RenderOptions.BitmapInterpolationMode" Value="HighQuality"/>
+        </Style>
+    </Window.Styles>
 
 	<Panel>
 		<DockPanel HorizontalAlignment="Stretch">
@@ -40,19 +53,21 @@
                 <ExperimentalAcrylicBorder.Material>
                     <ExperimentalAcrylicMaterial TintColor="{DynamicResource SystemAltLowColor}" MaterialOpacity="0.85" TintOpacity="1" />
                 </ExperimentalAcrylicBorder.Material>
-				<TextBlock Text="{Binding #TabControl.SelectedItem.Header, FallbackValue=Header}"
+				<TextBlock Text="{Binding #TabControl.SelectedItem.Name, FallbackValue=Header}"
                            Margin="40 20" FontSize="28" FontWeight="Light"/>
             </ExperimentalAcrylicBorder>
         </DockPanel> 
 
-        <TabControl x:Name="TabControl" Classes="sidebar" Margin="0 40 0 10">
-            <TabItem Header="Overview">
-               <views:OverviewView/>
-            </TabItem>
-
-            <TabItem Header="Button">
-             
-            </TabItem>
+        <TabControl x:Name="TabControl" Classes="sidebar" Margin="0 40 0 10"
+                    Items="{Binding Categories}" SelectedItem="{Binding SelectedCategory}">
+            <TabControl.ItemTemplate>
+				<DataTemplate>
+					<StackPanel Orientation="Horizontal">
+                        <Image Source="{Binding Image, Converter={StaticResource BitmapAssetValueConverter}}" />
+                        <TextBlock Text="{Binding Name}" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </DataTemplate>
+            </TabControl.ItemTemplate>
         </TabControl>
     </Panel>
 </Window>

@@ -10,7 +10,7 @@ namespace ThemeViewer.ViewModels
 {
     public class MainWindowViewModel : ViewModelBase
     {
-        public MainWindowViewModel()
+        public MainWindowViewModel() : base("Main", "Assets/avalonia-logo.ico")
         {
             this.WhenAnyValue(x => x.SelectedTheme)
                 .Subscribe(UpdateTheme);
@@ -19,6 +19,16 @@ namespace ThemeViewer.ViewModels
                 .Subscribe(UpdateDensity);
 
             _selectedTheme = Themes[0];
+            _selectedCategory = Categories[0];
+        }
+
+        public ObservableCollection<ViewModelBase> Categories => new() { new OverviewViewModel(), new ButtonsViewModel() };
+
+        private ViewModelBase _selectedCategory;
+        public ViewModelBase SelectedCategory
+        {
+            get => _selectedCategory;
+            set => this.RaiseAndSetIfChanged(ref _selectedCategory, value);
         }
 
         public ObservableCollection<string> Themes => new() { "Fluent Dark", "Fluent Light" };
