@@ -23,7 +23,7 @@ namespace Avalonia.StormyPixel.Converters
                 }
                 else
                 {
-                    string assemblyName = Assembly.GetEntryAssembly().GetName().Name;
+                    string assemblyName = Assembly.GetEntryAssembly()!.GetName().Name;
                     uri = new Uri($"avares://{assemblyName}/{rawUri}");
                 }
 
