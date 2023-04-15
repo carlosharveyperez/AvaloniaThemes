@@ -7,7 +7,7 @@ namespace ThemeViewer
 {
     public class ViewLocator : IDataTemplate
     {
-        public Control Build(object? data)
+        public Control Build(object data)
         {
             var name = data?.GetType().FullName!.Replace("ViewModel", "View");
             if (name != null)
@@ -22,7 +22,7 @@ namespace ThemeViewer
             return new TextBlock { Text = "View not found: " + name };
         }
 
-        public bool Match(object? data)
+        public bool Match(object data)
         {
             return data is ViewModelBase;
         }

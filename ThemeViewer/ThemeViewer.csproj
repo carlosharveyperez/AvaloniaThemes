@@ -11,16 +11,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="Styles\SideBar.xaml" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <AvaloniaResource Include="Styles\SideBar.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </AvaloniaResource>
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Avalonia.Desktop" Version="11.0.0-preview6" />
     <PackageReference Include="Avalonia.Themes.Fluent" Version="11.0.0-preview6" />
     <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="11.0.0-preview6" />
@@ -29,11 +19,5 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Avalonia.StormyPixel\Avalonia.StormyPixel.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="Views\OverviewView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </None>
   </ItemGroup>
 </Project>

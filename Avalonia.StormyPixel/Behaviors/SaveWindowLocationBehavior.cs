@@ -30,7 +30,7 @@ public class SaveWindowLocationBehavior : Behavior<Window>
         }
     }
 
-    private void Window_Closing(object? sender, WindowClosingEventArgs e)
+    private void Window_Closing(object sender, WindowClosingEventArgs e)
     {
         if (sender == null) return;
         Window w = (Window)sender;

@@ -9,6 +9,6 @@
 
     <Application.Styles>
         <FluentTheme/>
-        <StyleInclude Source="/Styles/SideBar.xaml" />
+        <StyleInclude Source="/Styles/SideBar.axaml" />
     </Application.Styles>
 </Application>
