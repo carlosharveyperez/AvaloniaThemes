@@ -6,7 +6,7 @@
         xmlns:i="clr-namespace:Avalonia.Xaml.Interactivity;assembly=Avalonia.Xaml.Interactivity"
         xmlns:behaviors="clr-namespace:Avalonia.StormyPixel.Behaviors;assembly=Avalonia.StormyPixel"
         xmlns:converters="clr-namespace:Avalonia.StormyPixel.Converters;assembly=Avalonia.StormyPixel"
-        mc:Ignorable="d" d:DesignWidth="1100" d:DesignHeight="800"
+        mc:Ignorable="d" d:DesignWidth="1400" d:DesignHeight="800"
         x:Class="ThemeViewer.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
         Icon="/Assets/avalonia-logo.ico"
@@ -20,9 +20,9 @@
         <behaviors:SaveWindowLocationBehavior/> 
     </i:Interaction.Behaviors>
 
-    <Window.DataContext>
+    <Design.DataContext>
         <vm:MainWindowViewModel/>
-    </Window.DataContext>
+    </Design.DataContext>
 
     <Window.Styles>
         <Style Selector="Image">
@@ -63,7 +63,7 @@
             <TabControl.ItemTemplate>
 				<DataTemplate>
 					<StackPanel Orientation="Horizontal">
-                        <Image Source="{Binding Image, Converter={StaticResource BitmapAssetValueConverter}}" />
+                        <Image Source="{Binding Image, Converter={StaticResource BitmapAssetValueConverter}}"/>
                         <TextBlock Text="{Binding Name}" VerticalAlignment="Center"/>
                     </StackPanel>
                 </DataTemplate>

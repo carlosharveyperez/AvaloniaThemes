@@ -18,8 +18,8 @@ namespace ThemeViewer.ViewModels
             this.WhenAnyValue(x => x.IsCompact)
                 .Subscribe(UpdateDensity);
 
-            _selectedTheme = Themes[0];
-            _selectedCategory = Categories[0];
+            SelectedTheme = Themes[0];
+            SelectedCategory = Categories[0];
         }
 
         public ObservableCollection<ViewModelBase> Categories => new() { new OverviewViewModel(), new ButtonsViewModel() };
