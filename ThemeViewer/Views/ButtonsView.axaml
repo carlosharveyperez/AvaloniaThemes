@@ -2,7 +2,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d" d:DesignWidth="900" d:DesignHeight="450"
+             mc:Ignorable="d" d:DesignWidth="900" d:DesignHeight="700"
              x:Class="ThemeViewer.Views.ButtonsView">
 
     <UserControl.Resources>
@@ -18,14 +18,18 @@
     </UserControl.Resources>
 
 	<UserControl.Styles>
-		<Style Selector="DropDownButton">
+        <Style Selector="DropDownButton">
+            <Setter Property="Flyout" Value="{StaticResource SharedMenuFlyout}" />
+        </Style>
+
+		<Style Selector="SplitButton">
             <Setter Property="Flyout" Value="{StaticResource SharedMenuFlyout}" />
         </Style>
 	</UserControl.Styles>
 
     <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Padding="30,10,20,20">
 		<StackPanel Spacing="20">
-            <StackPanel Spacing="5">
+            <StackPanel>
                 <TextBlock Text="Button"/>            
                 <StackPanel Orientation="Horizontal" Margin="10" Spacing="10">
 				    <Button Content="Enabled button" Width="130" HorizontalContentAlignment="Center" />
@@ -88,7 +92,7 @@
                 </StackPanel>
              </StackPanel>
 
-		    <StackPanel Spacing="5" Margin="0,20,0,0">
+		    <StackPanel Margin="0,20,0,0">
 			    <TextBlock Text="Toggle Button"/>
 			    <StackPanel Orientation="Horizontal" Margin="10" Spacing="10">
 				    <ToggleButton Content="Enabled button" Width="130" HorizontalContentAlignment="Center" />
@@ -99,14 +103,48 @@
 			    </StackPanel>
 	        </StackPanel>
 
-            <StackPanel Spacing="5" Margin="0,20,0,0">
-                <TextBlock Text="Dropdown"/>
+            <StackPanel Margin="0,20,0,0">
+                <TextBlock Text="Dropdown Button"/>
                 <StackPanel Orientation="Horizontal" Margin="10" Spacing="10">
 					<DropDownButton Content="Enabled button" Width="180" HorizontalContentAlignment="Center" />
 					<DropDownButton Content="Disabled button" IsEnabled="False" ToolTip.Tip="Dropdown Tooltip" 
                                     Width="180" HorizontalContentAlignment="Center"/>
 					<DropDownButton Content="Left" Width="140" HorizontalContentAlignment="Left"/>
 					<DropDownButton Content="Right" Width="140" HorizontalContentAlignment="Right"/>
+                </StackPanel>
+            </StackPanel>
+
+            <StackPanel Margin="0,20,0,0">
+                <TextBlock Text="Split Button"/>
+                <StackPanel Orientation="Horizontal" Margin="10" Spacing="10">
+                    <SplitButton Content="Enabled button" Width="180" HorizontalContentAlignment="Center" />
+					<SplitButton Content="Disabled button" IsEnabled="False" ToolTip.Tip="Dropdown Tooltip"
+                                 Width="180" HorizontalContentAlignment="Center"/>
+					<SplitButton Content="Left" Width="140" HorizontalContentAlignment="Left"/>
+					<SplitButton Content="Right" Width="140" HorizontalContentAlignment="Right"/>
+                </StackPanel>
+            </StackPanel>
+
+            <StackPanel Margin="0,20,0,0">
+                <TextBlock Text="Checkbox" />
+                <StackPanel Orientation="Horizontal" Margin="10" Spacing="30">
+                    <CheckBox Content="Unchecked" />
+                    <CheckBox Content="Checked" IsChecked="True"/>
+                    <CheckBox Content="Third state" IsChecked="{x:Null}" IsThreeState="True" />
+                    <CheckBox Content="Disabled" IsChecked="True" IsEnabled="False"/>
+                    <CheckBox Content="Left" Width ="120" HorizontalContentAlignment="Left" IsChecked="True"/>
+                    <CheckBox Content="Right" Width="120" HorizontalContentAlignment="Right" IsChecked="True"/>
+                </StackPanel>
+            </StackPanel>
+
+            <StackPanel Margin="0,20,0,0">
+                <TextBlock Text="Radio Button" />
+                <StackPanel Orientation="Horizontal" Margin="10" Spacing="30">
+                    <RadioButton Content="Unchecked" />
+                    <RadioButton Content="Checked" IsChecked="True"/>
+                    <RadioButton Content="Disabled" IsEnabled="False"/>
+                    <RadioButton Content="Left" Width ="120" HorizontalContentAlignment="Left"/>
+                    <RadioButton Content="Right" Width="120" HorizontalContentAlignment="Right"/>
                 </StackPanel>
             </StackPanel>
 
