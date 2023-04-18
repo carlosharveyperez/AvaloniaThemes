@@ -3,7 +3,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="900" d:DesignHeight="840"
-             x:Class="ThemeViewer.Views.ButtonsView" Background="Aquamarine">
+             x:Class="ThemeViewer.Views.ButtonsView" Padding="20">
 
     <UserControl.Resources>
         <MenuFlyout x:Key="SharedMenuFlyout" Placement="Bottom">
@@ -27,8 +27,8 @@
         </Style>
 	</UserControl.Styles>
 
-    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Padding="20,20,20,20">
-		<StackPanel Spacing="20" Background="DarkRed">
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+		<StackPanel Spacing="20">
             <StackPanel>
                 <TextBlock Text="Button"/>            
                 <StackPanel Orientation="Horizontal" Margin="10" Spacing="10">
