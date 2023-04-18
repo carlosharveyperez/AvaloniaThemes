@@ -2,7 +2,8 @@
 
 public class OverviewViewModel : ViewModelBase
 {
-    public OverviewViewModel() : base("Overview", "Assets/home.png")
+    public OverviewViewModel() : base("Overview")
     {
+        Image = "Assets/home.png";
     }
 }

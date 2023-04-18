@@ -2,8 +2,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d" d:DesignWidth="900" d:DesignHeight="700"
-             x:Class="ThemeViewer.Views.ButtonsView">
+             mc:Ignorable="d" d:DesignWidth="900" d:DesignHeight="840"
+             x:Class="ThemeViewer.Views.ButtonsView" Background="Aquamarine">
 
     <UserControl.Resources>
         <MenuFlyout x:Key="SharedMenuFlyout" Placement="Bottom">
@@ -27,8 +27,8 @@
         </Style>
 	</UserControl.Styles>
 
-    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Padding="30,10,20,20">
-		<StackPanel Spacing="20">
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Padding="20,20,20,20">
+		<StackPanel Spacing="20" Background="DarkRed">
             <StackPanel>
                 <TextBlock Text="Button"/>            
                 <StackPanel Orientation="Horizontal" Margin="10" Spacing="10">
@@ -148,6 +148,15 @@
                 </StackPanel>
             </StackPanel>
 
+            <StackPanel Margin="0,20,0,0">
+                <TextBlock Text="Toggle Switch" />
+                <StackPanel Orientation="Horizontal" Margin="10" Spacing="30">
+					<ToggleSwitch />
+                    <ToggleSwitch IsChecked="True" />
+					<ToggleSwitch IsEnabled="False"/>
+                    <ToggleSwitch IsChecked="True" IsEnabled="False"/>
+                </StackPanel>
+            </StackPanel>
         </StackPanel>
     </ScrollViewer>
 </UserControl>

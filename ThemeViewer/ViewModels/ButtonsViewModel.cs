@@ -2,7 +2,8 @@
 
 public class ButtonsViewModel : ViewModelBase
 {
-    public ButtonsViewModel() : base("Buttons", "Assets/buttons.png")
+    public ButtonsViewModel() : base("Buttons")
     {
+        Image = "Assets/buttons.png";
     }
 }

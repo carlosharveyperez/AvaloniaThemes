@@ -10,7 +10,7 @@ namespace ThemeViewer.ViewModels
 {
     public class MainWindowViewModel : ViewModelBase
     {
-        public MainWindowViewModel() : base("Main", "Assets/avalonia-logo.ico")
+        public MainWindowViewModel() : base("Main")
         {
             this.WhenAnyValue(x => x.SelectedTheme)
                 .Subscribe(UpdateTheme);
@@ -22,7 +22,12 @@ namespace ThemeViewer.ViewModels
             SelectedCategory = Categories[0];
         }
 
-        public ObservableCollection<ViewModelBase> Categories => new() { new OverviewViewModel(), new ButtonsViewModel() };
+        public ObservableCollection<ViewModelBase> Categories => new()
+        {
+            new OverviewViewModel(),
+            new ButtonsViewModel(),
+            new DateTimeViewModel()
+        };
 
         private ViewModelBase _selectedCategory;
         public ViewModelBase SelectedCategory
