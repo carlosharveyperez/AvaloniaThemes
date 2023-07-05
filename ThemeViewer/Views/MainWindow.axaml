@@ -29,7 +29,6 @@
             <Setter Property="Width" Value="24"/>
             <Setter Property="Height" Value="24"/>
             <Setter Property="Margin" Value="4,4,10,4"/>
-            <Setter Property="RenderOptions.BitmapInterpolationMode" Value="HighQuality"/>
         </Style>
     </Window.Styles>
 
@@ -43,7 +42,7 @@
                     <TextBlock Text="Theme" Margin="10, 30, 20, 5"/>
                     <StackPanel Orientation="Horizontal">
                         <ComboBox HorizontalAlignment="Left" Width="125" Margin="10 0 10 0" VerticalAlignment="Center"
-                                  Items="{Binding Themes}" SelectedItem="{Binding SelectedTheme}"/>
+                                  ItemsSource="{Binding Themes}" SelectedItem="{Binding SelectedTheme}"/>
                         <CheckBox Content="Compact" IsChecked="{Binding IsCompact}" VerticalAlignment="Center"/>
                     </StackPanel>
                 </StackPanel>
@@ -59,11 +58,12 @@
         </DockPanel> 
 
         <TabControl x:Name="TabControl" Classes="sidebar" Margin="0 40 0 10"
-                    Items="{Binding Categories}" SelectedItem="{Binding SelectedCategory}">
+                    ItemsSource="{Binding Categories}" SelectedItem="{Binding SelectedCategory}">
             <TabControl.ItemTemplate>
 				<DataTemplate>
 					<StackPanel Orientation="Horizontal">
-                        <Image Source="{Binding Image, Converter={StaticResource BitmapAssetValueConverter}}"/>
+                        <Image Source="{Binding Image, Converter={StaticResource BitmapAssetValueConverter}}"
+                               RenderOptions.BitmapInterpolationMode="HighQuality"/>
                         <TextBlock Text="{Binding Name}" VerticalAlignment="Center"/>
                     </StackPanel>
                 </DataTemplate>

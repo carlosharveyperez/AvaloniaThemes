@@ -126,6 +126,19 @@
             </StackPanel>
 
             <StackPanel Margin="0,20,0,0">
+                <TextBlock Text="Toggle Split Button"/>
+                <StackPanel Orientation="Horizontal" Margin="10" Spacing="10">
+                    <ToggleSplitButton Content="Enabled button" Width="180" HorizontalContentAlignment="Center" />
+					<ToggleSplitButton Content="Disabled button" IsEnabled="False" ToolTip.Tip="Dropdown Tooltip"
+                                       Width="180" HorizontalContentAlignment="Center"/>
+                    <ToggleSplitButton Content="Toggled" IsChecked="True" ToolTip.Tip="Dropdown Tooltip"
+                                       Width="180" HorizontalContentAlignment="Center"/>
+					<ToggleSplitButton Content="Left" Width="140" HorizontalContentAlignment="Left"/>
+					<ToggleSplitButton Content="Right" Width="140" HorizontalContentAlignment="Right"/>
+                </StackPanel>
+            </StackPanel>
+
+            <StackPanel Margin="0,20,0,0">
                 <TextBlock Text="Checkbox" />
                 <StackPanel Orientation="Horizontal" Margin="10" Spacing="30">
                     <CheckBox Content="Unchecked" />
